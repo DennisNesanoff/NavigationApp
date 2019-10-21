@@ -15,16 +15,20 @@ class SecondViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "Edit" {
+            let thirdVC = segue.destination as! ThirdViewController
+            thirdVC.text = segue.identifier
+        }
     }
-    */
-
+    
+    @IBAction func unwind(for segue: UIStoryboardSegue) {
+        let thirdVC = segue.source as! ThirdViewController
+        title = thirdVC.textField.text
+    }
+    
+    deinit {
+        print("The secondVC has unloaded from memory")
+    }
 }
